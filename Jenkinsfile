@@ -4,7 +4,7 @@ pipeline{
         stage("Build image"){
             steps{
                 script{
-                    dockerapp = docker.build("mentiss/api.produto:${env.BUILD_ID}", 
+                    dockerapp = docker.build("marcelom70/api.produto:${env.BUILD_ID}", 
                         "-f ./src/PedeLogo.Catalogo.Api/Dockerfile .")
                 }
             }
