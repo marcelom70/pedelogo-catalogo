@@ -1,10 +1,26 @@
 pipeline{
     agent any
     stages{
-        stage("Teste"){
+        stage("Build image"){
             steps{
-                echo "========Teste========"
+                script{
+                    dockerapp = docker.build("mentiss/api.produto:${env.BUILD_ID}", 
+                        "-f ./src/PedeLogo.Catalogo.Api/Dockerfile .")
+                }
             }
         }
+
+        stage("Push image"){
+            steps{
+                script{
+                    docker.withRegistry("https://registry.hub.docker.com", "hub.docker.id"){
+                        dockerapp.push("latest")
+                        dockerapp.push("${env.BUILD_ID}")
+                    }
+                    
+                }
+            }
+        }
+
     }
 }

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: scw-pvc
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  #storageClassName: database-modeia
+  storageClassName: scw-bssd-retain
+  accessModes:
+    - ReadWriteOnce
