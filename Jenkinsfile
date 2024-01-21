@@ -22,5 +22,22 @@ pipeline{
             }
         }
 
+        stage("Deploy kubernetes"){
+            agent{
+                kubernetes{
+                    cloud 'kubernetes'
+                }
+            }
+            environment{
+                tag_version = "${env.BUILD_ID}"
+            }
+            steps{
+                script{
+                        sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
+                        sh 'cat ./Manifestos/api/deployment.yaml'
+                        kubernetesDeploy(configs: '**/Manifestos/**', kubeconfigId: 'kubeconfig')
+                }                    
+            }
+        }
     }
 }
