@@ -28,12 +28,12 @@ pipeline{
                     cloud 'Scaleway'
                 }
             }
-            environment{
+ */         environment{
                 tag_version = "${env.BUILD_ID}"
             }
- */            steps{
+             steps{
                 script{
-                        echo "========== ${tag} ============"
+                        echo "========== ${tag_version} ============"
                         // sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         // sh 'cat ./Manifestos/api/deployment.yaml'
                         // kubernetesDeploy(configs: '** /Manifestos/ **', kubeconfigId: 'kubeconfig')
