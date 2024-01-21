@@ -25,7 +25,7 @@ pipeline{
         stage("Deploy kubernetes"){
             agent{
                 kubernetes{
-                    cloud 'Scaleway'
+                    cloud 'kubernetes'
                 }
             }
             environment{
