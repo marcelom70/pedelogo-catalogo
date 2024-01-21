@@ -36,7 +36,7 @@ pipeline{
                         echo "========== $tag_version ============"
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'cat ./Manifestos/api/deployment.yaml'
-                        kubernetesDeploy(configs: '**/Manifestos/**', kubeconfigId: 'kubeconfig')
+                        kubernetesDeploy(configs: '** /Manifestos/ **', kubeconfigId: 'kubeconfig')
                 }                    
             }
         }
