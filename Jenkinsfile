@@ -22,7 +22,7 @@ pipeline{
             }
         }
 
-        stage("Deploy kubernetes"){
+/*         stage("Deploy kubernetes"){
             agent{
                 kubernetes{
                     cloud 'Scaleway'
@@ -40,5 +40,5 @@ pipeline{
                 }                    
             }
         }
-    }
+ */    }
 }
