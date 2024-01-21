@@ -23,15 +23,15 @@ pipeline{
         }
 
         stage("Deploy kubernetes"){
-/*             agent{
+            agent{
                 kubernetes{
                     cloud 'Scaleway'
                 }
             }
- */         environment{
+            environment{
                 tag_version = "${env.BUILD_ID}"
             }
-             steps{
+            steps{
                 script{
                         echo "========== ${tag_version} ============"
                         // sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
