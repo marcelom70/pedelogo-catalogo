@@ -36,10 +36,8 @@ pipeline{
                         echo "========== ${tag_version} ============"
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'cat ./Manifestos/api/deployment.yaml'
-                        kubernetesApply(file: './Manifestos/mongodb/deployment.yaml', environment: 'dev', environmentName: 'kubeconfig')
-                        kubernetesApply(file: './Manifestos/mongodb/service.yaml', environment: 'dev', environmentName: 'kubeconfig')
-                        kubernetesApply(file: './Manifestos/api/deployment.yaml', environment: 'dev', environmentName: 'kubeconfig')
-                        kubernetesApply(file: './Manifestos/api/service.yaml', environment: 'dev', environmentName: 'kubeconfig')
+                        sh("kubectl apply -f ./Manifestos/mongodb/*.yaml")
+                        sh("kubectl apply -f ./Manifestos/api/*.yaml")
                 }                    
             }
         }
