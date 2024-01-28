@@ -14,7 +14,7 @@ spec:
     spec:
       containers:  
         - name: api
-          image: mentiss/pedelogo-catalogo:{{tag}}
+          image: marcelom70/pedelogo-catalogo:{{tag}}
           ports:
           - name: http
             containerPort: 80
