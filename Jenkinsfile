@@ -32,7 +32,7 @@ pipeline{
                 tag_version = "${env.BUILD_ID}"
             }
             steps{
-                withKubeConfig([credentialsId: 'kubeconfig']) {
+                withKubeConfig([credentialsId: 'kubernetes']) {
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'kubectl apply -f ./Manifestos/mongodb/deployment.yaml -f ./Manifestos/mongodb/service.yaml -f ./Manifestos/api/deployment.yaml -f ./Manifestos/api/service.yaml'
                 }
