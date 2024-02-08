@@ -14,8 +14,7 @@ spec:
     spec:
       containers:  
         - name: api
-          #image: marcelom70/api.produto:{{tag}}
-          image: marcelom70/api.produto:latest
+          image: marcelom70/api.produto:{{tag}}
           ports:
           - name: http
             containerPort: 80
