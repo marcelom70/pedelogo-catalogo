@@ -34,7 +34,7 @@ pipeline{
             steps{
                 withKubeConfig([credentialsId: 'kubernetes']) {
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
-                        sh 'cat ./Manifestos/api/service.yaml'
+                        sh 'ipconfig'
                         sh 'kubectl apply -f ./Manifestos/mongodb/deployment.yaml -f ./Manifestos/mongodb/service.yaml -f ./Manifestos/api/deployment.yaml -f ./Manifestos/api/service.yaml'
                 }
             }
