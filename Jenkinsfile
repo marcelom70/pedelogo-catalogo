@@ -35,8 +35,8 @@ pipeline{
                 withKubeConfig([credentialsId: 'kubernetes']) {
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'getent hosts $HOSTNAME'
-                        sh 'sudo apt-get update'
-                        sh 'sudo apt-get install -y kubectl'
+                        sh 'apt-get update'
+                        sh 'apt-get install -y kubectl'
                         sh 'kubectl get nodes'
                 }         
             }
