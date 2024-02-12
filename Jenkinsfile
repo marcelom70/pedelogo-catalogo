@@ -35,9 +35,9 @@ pipeline{
                 withKubeConfig([credentialsId: 'kubernetes']) {
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'getent hosts $HOSTNAME'
-                        sh 'apt-get update'
-                        sh 'apt-get install -y kubectl'
-                        sh 'kubectl get nodes'
+                        sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
+                        sh 'chmod +x kubectl'
+                        sh './kubectl get nodes'
                 }         
             }
         }
