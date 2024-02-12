@@ -32,11 +32,17 @@ pipeline{
                 tag_version = "${env.BUILD_ID}"
             }
             steps{
-                withKubeConfig([credentialsId: 'kubernetes']) {
+/*                 withKubeConfig([credentialsId: 'kubernetes']) {
                         sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
                         sh 'getent hosts $HOSTNAME'
                         sh 'kubectl get nodes'
                 }
+ */         
+                script {
+                    sh 'sed -i "s/{{tag}}/$tag_version/g" ./Manifestos/api/deployment.yaml'
+                    sh 'cat ./Manifestos/api/deployment.yaml'
+                    kubernetesDeploy(configs: '**/Manifestos/**', kubeconfigId: 'kubeconfig')
+                }   
             }
         }
     }
